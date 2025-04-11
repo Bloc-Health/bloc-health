@@ -2,7 +2,7 @@ import { Connector, useAccount, useConnect, useDisconnect } from "@starknet-reac
 
 export function WalletConnect() {
   // Get StarkNet connection functions and state
-  const { address, isConnected, status } = useAccount();
+  const { address, isConnected } = useAccount();
   const { connectors, connect } = useConnect();
   const { disconnect } = useDisconnect();
 
@@ -13,7 +13,6 @@ export function WalletConnect() {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4 text-amber-300">BlocHealth</h1>
 
       {isConnected ? (
         <div className="mb-4">
@@ -28,7 +27,7 @@ export function WalletConnect() {
         </div>
       ) : (
         <div className="mb-4">
-          <p>Status: {status}</p>
+          {/* <p>Status: {status}</p> */}
           <div className="mt-4">
             {connectors.map((connector) => (
               <button

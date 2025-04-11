@@ -13,14 +13,14 @@ const NavButton = () => {
     return (
         <div className='lg:hidden'>
             <Dialog>
-                <DialogTrigger>
-                    <button
+                <DialogTrigger className='rounded-md p-2.5'>
+                    {/* <button
                         type="button"
                         className="rounded-md p-2.5"
-                    >
+                    > */}
                         <span className="sr-only">Open main menu</span>
                         <Bars3Icon className="h-6" aria-hidden="true" />
-                    </button>
+                    {/* </button> */}
                 </DialogTrigger>
                 {/* <div className="fixed inset-0 z-50" /> */}
                 <DialogContent className="fixed h-[70vh] right-0 z-50 text-center justify-center bg-[#100E40]/80 w-3/4 rounded-2xl text-white px-6 py-6">

@@ -1,4 +1,4 @@
-import { ContractInteractionsContext } from "@/contexts/ContractInteractions";
+import { ContractInteractionsContext } from "@/contexts/ContractInteractionsContext";
 import { useContext } from "react";
 
 const useContractInteractions = () => useContext(ContractInteractionsContext);

@@ -1,21 +1,6 @@
+import { ContractInteractionsContext } from "./ContractInteractionsContext";
 import { useReadMainContract } from "./hooks";
-import { createContext, useState } from "react";
-
-type TContractInteractions = {
-  owner: string;
-  hospitalCount: number;
-  hospitalID: string;
-  setHospitalID: (id: string) => void;
-};
-
-export const ContractInteractionsContext = createContext<TContractInteractions>(
-  {
-    owner: "0x0000000000000000000000000000000000000000",
-    hospitalCount: 0,
-    hospitalID: "",
-    setHospitalID: () => {},
-  }
-);
+import { useState } from "react";
 
 export const ContractInteractionsProvider = ({
   children,

@@ -127,7 +127,7 @@ const Example = () => {
           <p className="break-all">Address: {address}</p>
           <button
             onClick={() => disconnect()}
-            className="mt-2 bg-red-500 text-white py-2 px-4 rounded"
+            className="mt-2 bg-red-500 text-white py-2 px-4 rounded cursor-pointer"
           >
             Disconnect
           </button>
@@ -140,7 +140,7 @@ const Example = () => {
               <button
                 key={connector.id}
                 onClick={() => handleConnect(connector)}
-                className="bg-blue-500 text-white py-2 px-4 rounded mr-2 mb-2"
+                className="bg-blue-500 text-white py-2 px-4 rounded mr-2 mb-2 cursor-pointer"
               >
                 Connect with {connector.id}
               </button>

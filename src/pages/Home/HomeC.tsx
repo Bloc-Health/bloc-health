@@ -33,7 +33,7 @@ const HomeC = () => {
                 <div className="flex flex-col gap-4">
                   <p className="lg:text-xl font-clash_medium">Join Hospital as Staff</p>
                   <p className="max-md:text-sm">Log on to view and manage hospital records dashboard with your protected hospital ID.</p>
-                  <div><Join /></div>
+                  {/* <div><Join /></div> */}
                 </div>
               </div>
             </div>

@@ -34,7 +34,7 @@ const Clients = () => {
 
             <div className="flex flex-wrap lg:justify-between lg:gap-y-5 max-md:justify-center max-md:gap-4 max-md:text-sm mt-10">
                 {hospitals.map((hospital, index) => (
-                    <Card className="flex gap-16 max-md:gap-2 items-center justify-between p-2 px-6 border-none bg-[#35F3F324]" key={index}>
+                    <Card className="flex rounded-4xl gap-16 max-md:gap-2 items-center justify-between p-2 px-6 border-none bg-[#35F3F324]" key={index}>
                         <img src={hospital.image} alt={hospital.name} />
                         {shortenUni(hospital.name)}
                         <p>{hospital.location}</p>

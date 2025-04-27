@@ -2,12 +2,14 @@ import { CONTRACT_ADDRESS } from "@/utils/constants";
 import CONTRACT_ABI from "@/utils/abi";
 import { Address, useReadContract } from "@starknet-react/core";
 import { IAppointment, IEmergencyContact, IHospital, IPatientReturnInfo } from "../utils/interfaces";
+import { num } from "starknet";
+
+const toAddress = (input) => {
+  return num.toHex(input);
+}
 
 export const useReadMainContract = (params) => {
-  // const { chain } = useNetwork();
-
   const result = useReadContract({
-    // address: chain.nativeCurrency.address,
     address: CONTRACT_ADDRESS,
     abi: CONTRACT_ABI,
 
@@ -16,6 +18,15 @@ export const useReadMainContract = (params) => {
 
   return result;
 };
+
+export const UseGetOwner = () => {
+  const { data: owner } = useReadMainContract({
+    functionName: "get_owner",
+    args: []
+  });
+
+  return toAddress(owner) as unknown as Address;
+}
 
 export const useGetAllPatients = (_hospitalId: string) => {
   const { data: allPatientsInfo } = useReadMainContract({
@@ -55,7 +66,7 @@ export const useHospital = (_hospitalId: string) => {
 
 export const useIsHospitalStaff = (_hospitalId: string) => {
   const { data: isStaff } = useReadMainContract({
-    functionName: "isHospitalStaff",
+    functionName: "get_owner",
     args: [_hospitalId]
   });
 

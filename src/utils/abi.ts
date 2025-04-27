@@ -1,4 +1,169 @@
 import type { Abi } from "abitype";
-const CONTRACT_ABI = [{ "inputs": [], "stateMutability": "nonpayable", "type": "constructor" }, { "inputs": [{ "internalType": "string", "name": "hospitalId", "type": "string" }], "name": "HospitalDoesNotExistError", "type": "error" }, { "inputs": [{ "internalType": "address", "name": "_address", "type": "address" }], "name": "HospitalStaffDoesNotExistsError", "type": "error" }, { "inputs": [{ "internalType": "address", "name": "_address", "type": "address" }], "name": "IsNotValidAddressError", "type": "error" }, { "inputs": [{ "internalType": "address", "name": "sender", "type": "address" }], "name": "NotAuthorizedForHospitalError", "type": "error" }, { "inputs": [{ "internalType": "address", "name": "sender", "type": "address" }], "name": "NotHospitalOwnerError", "type": "error" }, { "inputs": [{ "internalType": "address", "name": "patient", "type": "address" }], "name": "PatientDoesNotExistsError", "type": "error" }, { "anonymous": false, "inputs": [{ "indexed": false, "internalType": "string", "name": "name", "type": "string" }, { "indexed": false, "internalType": "string", "name": "hospitalId", "type": "string" }, { "indexed": false, "internalType": "address", "name": "owner", "type": "address" }], "name": "HospitalCreated", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "internalType": "string", "name": "hospitalId", "type": "string" }, { "indexed": false, "internalType": "address", "name": "_address", "type": "address" }, { "indexed": false, "internalType": "enum BlocHealth.AccessRoles", "name": "role", "type": "uint8" }], "name": "HospitalStaffRoleUpdated", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "internalType": "string", "name": "name", "type": "string" }, { "indexed": false, "internalType": "address", "name": "patient", "type": "address" }, { "indexed": false, "internalType": "uint256", "name": "DOB", "type": "uint256" }], "name": "PatientCreated", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "internalType": "string", "name": "name", "type": "string" }, { "indexed": false, "internalType": "address", "name": "patient", "type": "address" }, { "indexed": false, "internalType": "uint256", "name": "date", "type": "uint256" }], "name": "VisitRecordCreated", "type": "event" }, { "inputs": [{ "internalType": "string", "name": "_hospitalId", "type": "string" }, { "internalType": "string", "name": "_name", "type": "string" }, { "internalType": "string", "name": "_location", "type": "string" }, { "internalType": "uint256", "name": "_DOE", "type": "uint256" }, { "internalType": "uint256", "name": "_hospitalRegNo", "type": "uint256" }], "name": "addHospital", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "string", "name": "_hospitalId", "type": "string" }, { "internalType": "address", "name": "_newOwner", "type": "address" }], "name": "changeHospitalOwner", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "string", "name": "_hospitalId", "type": "string" }, { "internalType": "address", "name": "_patient", "type": "address" }, { "internalType": "string", "name": "_name", "type": "string" }, { "internalType": "enum BlocHealth.Gender", "name": "_gender", "type": "uint8" }, { "internalType": "uint256", "name": "_DOB", "type": "uint256" }, { "components": [{ "internalType": "string", "name": "phone", "type": "string" }, { "internalType": "string", "name": "email", "type": "string" }, { "internalType": "string", "name": "residentialAddress", "type": "string" }, { "internalType": "string", "name": "nextOfKin", "type": "string" }, { "internalType": "string", "name": "nextOfKinPhoneNumber", "type": "string" }, { "internalType": "string", "name": "nextOfKinResidentialAddress", "type": "string" }, { "internalType": "bool", "name": "healthInsured", "type": "bool" }], "internalType": "struct BlocHealth.ContactInfo", "name": "_contactInfo", "type": "tuple" }, { "components": [{ "internalType": "string", "name": "currentMedications", "type": "string" }, { "internalType": "string", "name": "allergies", "type": "string" }, { "internalType": "string", "name": "medicalHistoryFile", "type": "string" }], "internalType": "struct BlocHealth.MedicalInfo", "name": "_medicalInfo", "type": "tuple" }, { "components": [{ "internalType": "string", "name": "name", "type": "string" }, { "internalType": "string", "name": "phone", "type": "string" }, { "internalType": "string", "name": "residentialAddress", "type": "string" }], "internalType": "struct BlocHealth.EmergencyContact[]", "name": "_emergencyContacts", "type": "tuple[]" }], "name": "createPatientRecord", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "string", "name": "_hospitalId", "type": "string" }], "name": "deleteHospital", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "string", "name": "_hospitalId", "type": "string" }, { "internalType": "address", "name": "_address", "type": "address" }], "name": "deleteHospitalStaff", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "string", "name": "_hospitalId", "type": "string" }, { "internalType": "address", "name": "_patient", "type": "address" }], "name": "deletePatientRecord", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "string", "name": "_hospitalId", "type": "string" }], "name": "getAllPatients", "outputs": [{ "components": [{ "internalType": "string", "name": "name", "type": "string" }, { "internalType": "uint256", "name": "DOB", "type": "uint256" }, { "internalType": "enum BlocHealth.Gender", "name": "gender", "type": "uint8" }, { "components": [{ "internalType": "string", "name": "phone", "type": "string" }, { "internalType": "string", "name": "email", "type": "string" }, { "internalType": "string", "name": "residentialAddress", "type": "string" }, { "internalType": "string", "name": "nextOfKin", "type": "string" }, { "internalType": "string", "name": "nextOfKinPhoneNumber", "type": "string" }, { "internalType": "string", "name": "nextOfKinResidentialAddress", "type": "string" }, { "internalType": "bool", "name": "healthInsured", "type": "bool" }], "internalType": "struct BlocHealth.ContactInfo", "name": "contactInfo", "type": "tuple" }, { "components": [{ "internalType": "string", "name": "currentMedications", "type": "string" }, { "internalType": "string", "name": "allergies", "type": "string" }, { "internalType": "string", "name": "medicalHistoryFile", "type": "string" }], "internalType": "struct BlocHealth.MedicalInfo", "name": "medicalInfo", "type": "tuple" }], "internalType": "struct BlocHealth.PatientReturnInfo[]", "name": "", "type": "tuple[]" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "string", "name": "_hospitalId", "type": "string" }, { "internalType": "address", "name": "_patient", "type": "address" }], "name": "getPatientAppointments", "outputs": [{ "components": [{ "internalType": "string", "name": "currentMedications", "type": "string" }, { "internalType": "string", "name": "diagnosis", "type": "string" }, { "internalType": "string", "name": "treatmentPlan", "type": "string" }, { "internalType": "uint256", "name": "date", "type": "uint256" }, { "internalType": "string", "name": "reason", "type": "string" }], "internalType": "struct BlocHealth.Appointment[]", "name": "", "type": "tuple[]" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "string", "name": "_hospitalId", "type": "string" }, { "internalType": "address", "name": "_patient", "type": "address" }], "name": "getPatientRecord", "outputs": [{ "components": [{ "internalType": "string", "name": "name", "type": "string" }, { "internalType": "uint256", "name": "DOB", "type": "uint256" }, { "internalType": "enum BlocHealth.Gender", "name": "gender", "type": "uint8" }, { "components": [{ "internalType": "string", "name": "phone", "type": "string" }, { "internalType": "string", "name": "email", "type": "string" }, { "internalType": "string", "name": "residentialAddress", "type": "string" }, { "internalType": "string", "name": "nextOfKin", "type": "string" }, { "internalType": "string", "name": "nextOfKinPhoneNumber", "type": "string" }, { "internalType": "string", "name": "nextOfKinResidentialAddress", "type": "string" }, { "internalType": "bool", "name": "healthInsured", "type": "bool" }], "internalType": "struct BlocHealth.ContactInfo", "name": "contactInfo", "type": "tuple" }, { "components": [{ "internalType": "string", "name": "currentMedications", "type": "string" }, { "internalType": "string", "name": "allergies", "type": "string" }, { "internalType": "string", "name": "medicalHistoryFile", "type": "string" }], "internalType": "struct BlocHealth.MedicalInfo", "name": "medicalInfo", "type": "tuple" }], "internalType": "struct BlocHealth.PatientReturnInfo", "name": "", "type": "tuple" }, { "components": [{ "internalType": "string", "name": "name", "type": "string" }, { "internalType": "string", "name": "phone", "type": "string" }, { "internalType": "string", "name": "residentialAddress", "type": "string" }], "internalType": "struct BlocHealth.EmergencyContact[]", "name": "", "type": "tuple[]" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "hospitalCount", "outputs": [{ "internalType": "uint248", "name": "", "type": "uint248" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "string", "name": "", "type": "string" }], "name": "hospitals", "outputs": [{ "internalType": "string", "name": "name", "type": "string" }, { "internalType": "string", "name": "location", "type": "string" }, { "internalType": "uint256", "name": "DOE", "type": "uint256" }, { "internalType": "uint256", "name": "hospitalRegNo", "type": "uint256" }, { "internalType": "uint256", "name": "staffCount", "type": "uint256" }, { "internalType": "uint256", "name": "patientCount", "type": "uint256" }, { "internalType": "address", "name": "owner", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "string", "name": "_hospitalId", "type": "string" }], "name": "isHospitalStaff", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "owner", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "string", "name": "_hospitalId", "type": "string" }, { "internalType": "address", "name": "_address", "type": "address" }, { "internalType": "string", "name": "_name", "type": "string" }, { "internalType": "enum BlocHealth.AccessRoles", "name": "_role", "type": "uint8" }, { "internalType": "string", "name": "_email", "type": "string" }, { "internalType": "string", "name": "_phone", "type": "string" }], "name": "updateHospitalStaffRoles", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "string", "name": "_hospitalId", "type": "string" }, { "internalType": "address", "name": "_patient", "type": "address" }, { "internalType": "uint256", "name": "_date", "type": "uint256" }, { "components": [{ "internalType": "string", "name": "currentMedications", "type": "string" }, { "internalType": "string", "name": "diagnosis", "type": "string" }, { "internalType": "string", "name": "treatmentPlan", "type": "string" }, { "internalType": "uint256", "name": "date", "type": "uint256" }, { "internalType": "string", "name": "reason", "type": "string" }], "internalType": "struct BlocHealth.Appointment", "name": "_appointment", "type": "tuple" }], "name": "uploadAppointment", "outputs": [], "stateMutability": "nonpayable", "type": "function" }] as unknown as Abi;
+const CONTRACT_ABI = [
+    {
+        "name": "BlocHealthImpl",
+        "type": "impl",
+        "interface_name": "___testsingle::IBlocHealth"
+    },
+    {
+        "name": "___testsingle::IBlocHealth",
+        "type": "interface",
+        "items": [
+            {
+                "name": "get_owner",
+                "type": "function",
+                "inputs": [],
+                "outputs": [
+                    {
+                        "type": "core::starknet::contract_address::ContractAddress"
+                    }
+                ],
+                "state_mutability": "view"
+            }
+        ]
+    },
+    {
+        "name": "constructor",
+        "type": "constructor",
+        "inputs": []
+    },
+    {
+        "kind": "struct",
+        "name": "___testsingle::BlocHealth::HospitalCreated",
+        "type": "event",
+        "members": [
+            {
+                "kind": "data",
+                "name": "name",
+                "type": "core::felt252"
+            },
+            {
+                "kind": "data",
+                "name": "hospital_id",
+                "type": "core::felt252"
+            },
+            {
+                "kind": "data",
+                "name": "owner",
+                "type": "core::starknet::contract_address::ContractAddress"
+            }
+        ]
+    },
+    {
+        "name": "___testsingle::BlocHealth::AccessRoles",
+        "type": "enum",
+        "variants": [
+            {
+                "name": "Admin",
+                "type": "()"
+            },
+            {
+                "name": "Doctor",
+                "type": "()"
+            },
+            {
+                "name": "Nurse",
+                "type": "()"
+            },
+            {
+                "name": "Staff",
+                "type": "()"
+            }
+        ]
+    },
+    {
+        "kind": "struct",
+        "name": "___testsingle::BlocHealth::StaffAdded",
+        "type": "event",
+        "members": [
+            {
+                "kind": "data",
+                "name": "hospital_id",
+                "type": "core::felt252"
+            },
+            {
+                "kind": "data",
+                "name": "address",
+                "type": "core::starknet::contract_address::ContractAddress"
+            },
+            {
+                "kind": "data",
+                "name": "role",
+                "type": "___testsingle::BlocHealth::AccessRoles"
+            }
+        ]
+    },
+    {
+        "kind": "struct",
+        "name": "___testsingle::BlocHealth::PatientAdded",
+        "type": "event",
+        "members": [
+            {
+                "kind": "data",
+                "name": "name",
+                "type": "core::felt252"
+            },
+            {
+                "kind": "data",
+                "name": "hospital_id",
+                "type": "core::felt252"
+            },
+            {
+                "kind": "data",
+                "name": "patient",
+                "type": "core::starknet::contract_address::ContractAddress"
+            }
+        ]
+    },
+    {
+        "kind": "struct",
+        "name": "___testsingle::BlocHealth::VisitRecordCreated",
+        "type": "event",
+        "members": [
+            {
+                "kind": "data",
+                "name": "name",
+                "type": "core::felt252"
+            },
+            {
+                "kind": "data",
+                "name": "patient",
+                "type": "core::starknet::contract_address::ContractAddress"
+            },
+            {
+                "kind": "data",
+                "name": "date",
+                "type": "core::integer::u64"
+            }
+        ]
+    },
+    {
+        "kind": "enum",
+        "name": "___testsingle::BlocHealth::Event",
+        "type": "event",
+        "variants": [
+            {
+                "kind": "nested",
+                "name": "HospitalCreated",
+                "type": "___testsingle::BlocHealth::HospitalCreated"
+            },
+            {
+                "kind": "nested",
+                "name": "StaffAdded",
+                "type": "___testsingle::BlocHealth::StaffAdded"
+            },
+            {
+                "kind": "nested",
+                "name": "PatientAdded",
+                "type": "___testsingle::BlocHealth::PatientAdded"
+            },
+            {
+                "kind": "nested",
+                "name": "VisitRecordCreated",
+                "type": "___testsingle::BlocHealth::VisitRecordCreated"
+            }
+        ]
+    }
+] as unknown as Abi;
 
 export default CONTRACT_ABI;

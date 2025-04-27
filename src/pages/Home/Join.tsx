@@ -18,7 +18,6 @@ export function Join() {
     const navigate = useNavigate();
     const { hospitalID, setHospitalID } = useContractInteractions();
     const isStaff = useIsHospitalStaff(hospitalID);
-    // console.log(isStaff);
 
     const handleSubmit = () => {
         if (isStaff === undefined) {
@@ -35,7 +34,7 @@ export function Join() {
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button size="lg" className="bg-[#2924A6] hover:bg-blue-800">
+                <Button size="lg" className="bg-[#2924A6] hover:bg-blue-800 cursor-pointer">
                     Join Hospital
                 </Button>
             </DialogTrigger>

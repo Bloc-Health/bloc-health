@@ -1,4 +1,4 @@
-export const CONTRACT_ADDRESS = "0x030d4c408487b522a352f2c7d137d668a5f55adbc29fd757ee72534076f890ee";
+export const CONTRACT_ADDRESS = "0x1a3098d3b97331cd586bd6134f8be3c6e8cea5dba857e96aef4dbc282c6712a";
 
 export const epochToDateString = (epochTimestamp) => {
     const date = new Date(epochTimestamp * 1000);

@@ -1,12 +1,47 @@
-import type { Abi } from "abitype";
+import { Abi } from "starknet";
+
 const CONTRACT_ABI = [
     {
         "name": "BlocHealthImpl",
         "type": "impl",
-        "interface_name": "___testsingle::IBlocHealth"
+        "interface_name": "starknet_multiple_contracts::blochealth::IBlocHealth"
     },
     {
-        "name": "___testsingle::IBlocHealth",
+        "name": "starknet_multiple_contracts::blochealth::BlocHealth::Hospital",
+        "type": "struct",
+        "members": [
+            {
+                "name": "name",
+                "type": "core::felt252"
+            },
+            {
+                "name": "location",
+                "type": "core::felt252"
+            },
+            {
+                "name": "doe",
+                "type": "core::integer::u64"
+            },
+            {
+                "name": "hospital_reg_no",
+                "type": "core::integer::u64"
+            },
+            {
+                "name": "staff_count",
+                "type": "core::integer::u64"
+            },
+            {
+                "name": "patient_count",
+                "type": "core::integer::u64"
+            },
+            {
+                "name": "owner",
+                "type": "core::starknet::contract_address::ContractAddress"
+            }
+        ]
+    },
+    {
+        "name": "starknet_multiple_contracts::blochealth::IBlocHealth",
         "type": "interface",
         "items": [
             {
@@ -16,6 +51,50 @@ const CONTRACT_ABI = [
                 "outputs": [
                     {
                         "type": "core::starknet::contract_address::ContractAddress"
+                    }
+                ],
+                "state_mutability": "view"
+            },
+            {
+                "name": "add_hospital",
+                "type": "function",
+                "inputs": [
+                    {
+                        "name": "name",
+                        "type": "core::felt252"
+                    },
+                    {
+                        "name": "location",
+                        "type": "core::felt252"
+                    },
+                    {
+                        "name": "doe",
+                        "type": "core::integer::u64"
+                    },
+                    {
+                        "name": "hospital_reg_no",
+                        "type": "core::integer::u64"
+                    },
+                    {
+                        "name": "owner",
+                        "type": "core::starknet::contract_address::ContractAddress"
+                    }
+                ],
+                "outputs": [],
+                "state_mutability": "external"
+            },
+            {
+                "name": "get_hospital",
+                "type": "function",
+                "inputs": [
+                    {
+                        "name": "hospital_id",
+                        "type": "core::felt252"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "type": "starknet_multiple_contracts::blochealth::BlocHealth::Hospital"
                     }
                 ],
                 "state_mutability": "view"
@@ -29,7 +108,7 @@ const CONTRACT_ABI = [
     },
     {
         "kind": "struct",
-        "name": "___testsingle::BlocHealth::HospitalCreated",
+        "name": "starknet_multiple_contracts::blochealth::BlocHealth::HospitalCreated",
         "type": "event",
         "members": [
             {
@@ -50,7 +129,7 @@ const CONTRACT_ABI = [
         ]
     },
     {
-        "name": "___testsingle::BlocHealth::AccessRoles",
+        "name": "starknet_multiple_contracts::blochealth::BlocHealth::AccessRoles",
         "type": "enum",
         "variants": [
             {
@@ -73,7 +152,7 @@ const CONTRACT_ABI = [
     },
     {
         "kind": "struct",
-        "name": "___testsingle::BlocHealth::StaffAdded",
+        "name": "starknet_multiple_contracts::blochealth::BlocHealth::StaffAdded",
         "type": "event",
         "members": [
             {
@@ -89,13 +168,13 @@ const CONTRACT_ABI = [
             {
                 "kind": "data",
                 "name": "role",
-                "type": "___testsingle::BlocHealth::AccessRoles"
+                "type": "starknet_multiple_contracts::blochealth::BlocHealth::AccessRoles"
             }
         ]
     },
     {
         "kind": "struct",
-        "name": "___testsingle::BlocHealth::PatientAdded",
+        "name": "starknet_multiple_contracts::blochealth::BlocHealth::PatientAdded",
         "type": "event",
         "members": [
             {
@@ -117,7 +196,7 @@ const CONTRACT_ABI = [
     },
     {
         "kind": "struct",
-        "name": "___testsingle::BlocHealth::VisitRecordCreated",
+        "name": "starknet_multiple_contracts::blochealth::BlocHealth::VisitRecordCreated",
         "type": "event",
         "members": [
             {
@@ -139,31 +218,31 @@ const CONTRACT_ABI = [
     },
     {
         "kind": "enum",
-        "name": "___testsingle::BlocHealth::Event",
+        "name": "starknet_multiple_contracts::blochealth::BlocHealth::Event",
         "type": "event",
         "variants": [
             {
                 "kind": "nested",
                 "name": "HospitalCreated",
-                "type": "___testsingle::BlocHealth::HospitalCreated"
+                "type": "starknet_multiple_contracts::blochealth::BlocHealth::HospitalCreated"
             },
             {
                 "kind": "nested",
                 "name": "StaffAdded",
-                "type": "___testsingle::BlocHealth::StaffAdded"
+                "type": "starknet_multiple_contracts::blochealth::BlocHealth::StaffAdded"
             },
             {
                 "kind": "nested",
                 "name": "PatientAdded",
-                "type": "___testsingle::BlocHealth::PatientAdded"
+                "type": "starknet_multiple_contracts::blochealth::BlocHealth::PatientAdded"
             },
             {
                 "kind": "nested",
                 "name": "VisitRecordCreated",
-                "type": "___testsingle::BlocHealth::VisitRecordCreated"
+                "type": "starknet_multiple_contracts::blochealth::BlocHealth::VisitRecordCreated"
             }
         ]
     }
-] as unknown as Abi;
+] as const satisfies Abi;
 
 export default CONTRACT_ABI;

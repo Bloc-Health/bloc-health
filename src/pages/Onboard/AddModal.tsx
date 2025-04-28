@@ -10,15 +10,17 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog";
 import { IAddHospital } from "@/utils/interfaces";
+import { useAccount } from "@starknet-react/core";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 export function AddModal({ info, isValidated }: { info: IAddHospital, isValidated: boolean }) {
-    console.log({
-        info,
-        entries: Object.entries(info),
-    })
+    // console.log({
+    //     info,
+    //     entries: Object.entries(info),
+    // })
     const navigate = useNavigate();
+    const { account } = useAccount();
 
     return (
         <Dialog>
@@ -39,11 +41,11 @@ export function AddModal({ info, isValidated }: { info: IAddHospital, isValidate
                 <div className="flex gap-3 justify-center mt-5">
                     <AddPatientTxBtn
                         text="Proceed"
-                        functionName="addHospital"
-                        args={Object.values(info)}
+                        functionName="add_hospital"
+                        args={[...Object.values(info), account?.address]}
                         onError={(e) => {
                             toast.error(e.message);
-                            console.log(e.error);
+                            console.log(e.message);
                         }}
                         onStatus={(status) => {
                             console.log(status);

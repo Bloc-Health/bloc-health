@@ -12,7 +12,7 @@ const Onboard = () => {
     const [validated, setValidated] = useState<boolean>(false);
 
     const [errors, setErrors] = useState({
-        _hospitalId: "",
+        // _hospitalId: "",
         _name: "",
         _location: "",
         _DOE: "",
@@ -20,7 +20,7 @@ const Onboard = () => {
     });
 
     const [hospitalInfo, setHospitalInfo] = useState<IAddHospital>({
-        _hospitalId: "",
+        // _hospitalId: "",
         _name: "",
         _location: "",
         _DOE: 0,
@@ -29,7 +29,7 @@ const Onboard = () => {
 
     const validate = () => {
         const newErrors = {
-            _hospitalId: hospitalInfo._hospitalId.trim().length === 0 ? "Hospital ID is required" : "",
+            // _hospitalId: hospitalInfo._hospitalId.trim().length === 0 ? "Hospital ID is required" : "",
             _name: hospitalInfo._name.trim().length === 0 ? "Name is required" : "",
             _location: hospitalInfo._location.trim().length === 0 ? "Location is required" : "",
             _DOE: hospitalInfo._DOE === 0 ? "Date of establishment is required" : "",
@@ -117,7 +117,7 @@ const Onboard = () => {
                             />
                             {errors._DOE && <p className="mt-2 text-red-500 text-xs">{errors._DOE}</p>}
                         </div>
-                        <div className="w-full">
+                        {/* <div className="w-full">
                             <Input
                                 id="name"
                                 type="number"
@@ -126,7 +126,7 @@ const Onboard = () => {
                                 onChange={(e) => setHospitalInfo({ ...hospitalInfo, _hospitalId: e.target.value })}
                             />
                             {errors._hospitalId && <p className="mt-2 text-red-500 text-xs">{errors._hospitalId}</p>}
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

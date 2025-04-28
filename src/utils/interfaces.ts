@@ -88,7 +88,7 @@ export interface IAppointment {
 }
 
 export interface IAddHospital {
-  _hospitalId: string;
+  // _hospitalId: string;
   _name: string;
   _location: string;
   _DOE: number;

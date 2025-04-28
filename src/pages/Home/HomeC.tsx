@@ -14,7 +14,7 @@ const HomeC = () => {
           <p className="max-md:text-sm">Create your hospital profile on BlocHealth or Request to Join a hospital</p>
         </div>
 
-        <div className="max-md:mt-10 mb-10 flex max-md:flex-col items-center gap-10">
+        <div className="max-md:mt-10 mb-10 flex max-md:flex-col items-center gap-10 justify-betwee">
           <div className="flex flex-col gap-8 max-md:gap-6">
             <div className="flex items-start gap-2">
               <img src="/images/hospital.png" alt="hospital" />

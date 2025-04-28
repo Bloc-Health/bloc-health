@@ -1,30 +1,31 @@
-import React, { useState } from 'react';
-import { useContract, useAccount, useSendTransaction, Address } from '@starknet-react/core';
-import { CallData } from 'starknet';
+import React, { useEffect, useState } from 'react';
+import { useContract, useAccount, useSendTransaction } from '@starknet-react/core';
+import { Abi, CallData } from 'starknet';
+import { CONTRACT_ADDRESS } from "@/utils/constants";
+import CONTRACT_ABI from "@/utils/abi";
+
 
 interface TransactionButtonProps {
-  contractAddress: Address;
-  abi: any[];
   functionName: string;
-  args: any[];
+  args: Abi[];
   text: string;
   onSuccess?: (txHash: string) => void;
+  onStatus?: (status: string) => void;
   onError?: (error: Error) => void;
 }
 
 const TransactionButton: React.FC<TransactionButtonProps> = ({
-  contractAddress,
-  abi,
   functionName,
   args,
   text,
   onSuccess,
+  onStatus,
   onError
 }) => {
   const { account } = useAccount();
   const { contract } = useContract({
-    address: contractAddress,
-    abi
+    abi: CONTRACT_ABI,
+    address: CONTRACT_ADDRESS,
   });
 
   const [loading, setLoading] = useState(false);
@@ -32,15 +33,25 @@ const TransactionButton: React.FC<TransactionButtonProps> = ({
   const [error, setError] = useState<string | null>(null);
 
   // Setup contract write hook
-  const { writeAsync } = useSendTransaction({
+  const { sendAsync: writeAsync, status } = useSendTransaction({
     calls: contract ? [
       {
-        contractAddress: contractAddress,
+        contractAddress: CONTRACT_ADDRESS,
         entrypoint: functionName,
         calldata: CallData.compile(args)
       }
     ] : []
   });
+  // const { sendAsync: writeAsync } = useSendTransaction({
+  // calls: contract ? [contract.populate(functionName, CallData.compile(args))] : undefined,
+  // });
+
+  useEffect(() => {
+    if (onStatus) {
+      onStatus(status);
+      console.log(status);
+    }
+  }, [status, onStatus]);
 
   const handleTransaction = async () => {
     if (!account || !contract) {
@@ -48,27 +59,23 @@ const TransactionButton: React.FC<TransactionButtonProps> = ({
       return;
     }
 
-    setLoading(true);
-    setError(null);
-    setTxHash(null);
-
     try {
+      setLoading(true);
+      setError(null);
+
       const response = await writeAsync();
       const hash = response.transaction_hash;
       setTxHash(hash);
-      setLoading(false);
 
-      if (onSuccess) {
-        onSuccess(hash);
-      }
+      if (onSuccess) onSuccess(hash);
     } catch (err) {
       console.error("Transaction failed:", err);
-      setError(err instanceof Error ? err.message : "Transaction failed");
-      setLoading(false);
+      const message = err instanceof Error ? err.message : "Transaction failed";
+      setError(message);
 
-      if (onError && err instanceof Error) {
-        onError(err);
-      }
+      if (onError && err instanceof Error) onError(err);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -93,6 +100,9 @@ const TransactionButton: React.FC<TransactionButtonProps> = ({
           <p className="text-green-800 text-xs break-all">
             Hash: {txHash}
           </p>
+          <a href={`https://testnet.starkscan.co/tx/${txHash}`} target="_blank" rel="noopener noreferrer" className="text-blue-600 underline text-xs">
+            View on StarkScan
+          </a>
         </div>
       )}
 

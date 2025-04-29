@@ -1,3 +1,5 @@
+import { Address } from "@starknet-react/chains";
+
 export enum AccessRoles {
   Doctor,
   Staff,
@@ -18,7 +20,7 @@ export interface IHospital {
   hospitalRegNo: bigint;
   staffCount: bigint;
   patientCount: bigint;
-  owner: string;
+  owner: Address;
   // roles: {
   //   [key: string]: IStaff;
   // }

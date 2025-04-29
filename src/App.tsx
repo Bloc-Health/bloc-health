@@ -17,6 +17,7 @@ import Clients from "./pages/Clients/index.tsx";
 import Onboard from "./pages/Onboard/index.tsx";
 import Dash from "./pages/Dashboard/index.tsx";
 import ManageStaff from "./pages/Dashboard/ManageStaff.tsx";
+import { ContractInteractionsProvider } from './contexts/ContractInteractions.tsx';
 
 // globalThis.Buffer = Buffer;
 
@@ -88,10 +89,10 @@ const App = () => {
 
   return (
     <StarknetProvider>
-      {/* <ContractInteractionsProvider> */}
+      <ContractInteractionsProvider>
         <RouterProvider router={router} />
         <Toaster />
-      {/* </ContractInteractionsProvider> */}
+      </ContractInteractionsProvider>
     </StarknetProvider>
   );
 };

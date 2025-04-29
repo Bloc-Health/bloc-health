@@ -11,23 +11,26 @@ import { Input } from "@/components/ui/input";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import useContractInteractions from "../Dashboard/useContractInteractions";
-import { useIsHospitalStaff } from "@/contexts/hooks";
+// import { useIsHospitalStaff } from "@/contexts/hooks";
+import { useGetHospital } from "@/contexts/hooks";
 
 
 export function Join() {
     const navigate = useNavigate();
     const { hospitalID, setHospitalID } = useContractInteractions();
-    const isStaff = useIsHospitalStaff(hospitalID);
+    const hospital = useGetHospital(hospitalID);
+    console.log(hospital);
+    // const isStaff = useIsHospitalStaff(hospitalID);
 
     const handleSubmit = () => {
-        if (isStaff === undefined) {
+        if (!hospital.name) {
             toast.error("Invalid Hospital ID");
             return;
         }
-        if (isStaff === false) {
-            toast.error("You are not a staff of this hospital");
-            return;
-        }
+        // if (isStaff === false) {
+        //     toast.error("You are not a staff of this hospital");
+        //     return;
+        // }
         navigate(`/dashboard`, { state: { hospitalID } });
     };
 
@@ -48,7 +51,7 @@ export function Join() {
                     </DialogDescription>
                 </DialogHeader>
                 <div className="flex gap-3 justify-center mt-5">
-                    <Input placeholder="Hospital ID" value={hospitalID} onChange={(e) => setHospitalID(e.target.value)} />
+                    <Input placeholder="Enter Hospital ID" value={hospitalID} onChange={(e) => setHospitalID(e.target.value)} />
                     <Button className="bg-[#2924A6] hover:bg-blue-800" onClick={handleSubmit}>Submit</Button>
                 </div>
             </DialogContent >

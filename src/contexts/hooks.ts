@@ -28,6 +28,15 @@ export const UseGetOwner = () => {
   return toAddress(owner) as unknown as Address;
 }
 
+export const useGetHospital = (_hospitalId: string) => {
+  const { data: hospital } = useReadMainContract({
+    functionName: "get_hospital",
+    args: [_hospitalId],
+  });
+
+  return hospital as unknown as IHospital;
+}
+
 export const useGetAllPatients = (_hospitalId: string) => {
   const { data: allPatientsInfo } = useReadMainContract({
     functionName: "getAllPatients",

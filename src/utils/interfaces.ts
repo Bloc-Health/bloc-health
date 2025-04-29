@@ -19,13 +19,13 @@ export interface IHospital {
   staffCount: bigint;
   patientCount: bigint;
   owner: string;
-  roles: {
-    [key: string]: IStaff;
-  }
-  patientAddresses: string[];
-  patients: {
-    [key: string]: IPatient;
-  }
+  // roles: {
+  //   [key: string]: IStaff;
+  // }
+  // patientAddresses: string[];
+  // patients: {
+  //   [key: string]: IPatient;
+  // }
 }
 
 export interface IStaff {

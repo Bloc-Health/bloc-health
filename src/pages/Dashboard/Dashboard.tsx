@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { useIsHospitalOwner, useGetAllPatients, useHospital, useGetPatientsAppointments } from "@/contexts/hooks";
+import { useIsHospitalOwner, useGetAllPatients, useHospital, useGetPatientsAppointments, useGetHospital } from "@/contexts/hooks";
 import useContractInteractions from "@/pages/Dashboard/useContractInteractions";
 import { Link } from "react-router-dom";
 import { useAccount } from "@starknet-react/core";
@@ -8,9 +8,11 @@ import { useAccount } from "@starknet-react/core";
 const Dashboard = () => {
   const { isConnected, address } = useAccount();
   const { hospitalID } = useContractInteractions();
+  const hospital = useGetHospital(hospitalID);
+  // const hospital = useHospital(hospitalID);
+  console.log(hospital);
   const allPatientsInfo = useGetAllPatients(hospitalID);
   const isHospitalOwner = useIsHospitalOwner(hospitalID, address);
-  const hospital = useHospital(hospitalID);
   const appointments = useGetPatientsAppointments(hospitalID, "0xB2AF542dA937A6aC46228eBA63f21A7EFc40C70E");
   const patientCount = allPatientsInfo?.length;
   // console.log(hospital && hospital[0]);

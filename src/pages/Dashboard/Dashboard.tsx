@@ -8,7 +8,7 @@ import { useAccount } from "@starknet-react/core";
 const Dashboard = () => {
   const { isConnected, address } = useAccount();
   const { hospitalID } = useContractInteractions();
-  const hospital = useGetHospital(hospitalID);
+  const { hospital } = useGetHospital(hospitalID);
   // const hospital = useHospital(hospitalID);
   console.log(hospital);
   const allPatientsInfo = useGetAllPatients(hospitalID);
@@ -44,6 +44,9 @@ const Dashboard = () => {
             <span className="font-clash_semibold ml-1">Dr. John Leo</span>
           </p>
           <p className="font-clash_extralight">{hospital && (hospital.name == '' ? 'No Hospital ID found' : hospital.name)}</p>
+          <p>{hospital && (hospital.location == '' ? 'No location found' : hospital.location)}</p>
+          <p>{hospital && (hospital.DOE == null ? 'No DOE found' : hospital.DOE)}</p>
+          <p>{hospital && (hospital.hospitalRegNo == null ? 'No Reg No found' : hospital.hospitalRegNo)}</p>
         </div>
 
         <div className="mt-10 flex flex-wrap max-md:flex-col justify-between gap-10 max-md:gap-5">

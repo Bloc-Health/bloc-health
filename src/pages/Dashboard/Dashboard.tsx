@@ -19,6 +19,11 @@ const Dashboard = () => {
   // console.log(hospitalID);
   // console.log(patientCount);
 
+  const hospitalName = hospital?.name || "No Hospital ID found";
+  const hospitalLocation = hospital?.location || "No location found";
+  const hospitalDOE = hospital?.DOE || "No DOE found";
+  const hospitalRegNo = hospital?.hospitalRegNo || "No Reg No found";
+
 
   if (!isConnected) {
     return (
@@ -43,10 +48,24 @@ const Dashboard = () => {
             Welcome!{" "}
             <span className="font-clash_semibold ml-1">Dr. John Leo</span>
           </p>
-          <p className="font-clash_extralight">{hospital && (hospital.name == '' ? 'No Hospital ID found' : hospital.name)}</p>
-          <p>{hospital && (hospital.location == '' ? 'No location found' : hospital.location)}</p>
-          <p>{hospital && (hospital.DOE == null ? 'No DOE found' : hospital.DOE)}</p>
-          <p>{hospital && (hospital.hospitalRegNo == null ? 'No Reg No found' : hospital.hospitalRegNo)}</p>
+          <div className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-2 text-md font-semibold text-gray-300">
+            <p className="flex items-center gap-2">
+              <span className="w-4 h-4 rounded-full bg-gray-200 flex-shrink-0"></span>
+              {hospitalName}
+            </p>
+            <p className="flex items-center gap-2">
+              <span className="w-4 h-4 rounded-full bg-gray-200 flex-shrink-0"></span>
+              {hospitalLocation}
+            </p>
+            <p className="flex items-center gap-2">
+              <span className="w-4 h-4 rounded-full bg-gray-200 flex-shrink-0"></span>
+              Reg No: {hospitalRegNo}
+            </p>
+            <p className="flex items-center gap-2">
+              <span className="w-4 h-4 rounded-full bg-gray-200 flex-shrink-0"></span>
+              Established: {hospitalDOE}
+            </p>
+          </div>
         </div>
 
         <div className="mt-10 flex flex-wrap max-md:flex-col justify-between gap-10 max-md:gap-5">

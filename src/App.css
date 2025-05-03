@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@config "../tailwind.config.js";
 
 body {
   background: linear-gradient(179.48deg, #2924A6 -26.07%, #100E40 99.55%) no-repeat;

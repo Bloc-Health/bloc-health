@@ -46,6 +46,9 @@ const TransactionButton: React.FC<TransactionButtonProps> = ({
   // calls: contract ? [contract.populate(functionName, CallData.compile(args))] : undefined,
   // });
 
+  console.log(args);
+  console.log(CallData.compile(args));
+
   useEffect(() => {
     if (onStatus) {
       onStatus(status);
